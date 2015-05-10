@@ -5,7 +5,7 @@
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	
-	<bean id="userDao" class="com.sxt.dao.UserDao">
+	<bean id="userDao" class="com.tw.dao.impl.UserDao">
 	  <property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
 </beans>

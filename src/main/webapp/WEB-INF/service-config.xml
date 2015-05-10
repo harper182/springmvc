@@ -5,7 +5,7 @@
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="userService" class="com.sxt.service.UserService">
+	<bean id="userService" class="com.tw.service.impl.UserService">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	

@@ -19,6 +19,15 @@ dependencies{
 	compile  'org.hibernate:hibernate:3.5.4-Final'
 	compile  'org.hibernate:hibernate-annotations:3.5.4-Final'
 	compile  'org.hibernate:hibernate-entitymanager:4.3.9.Final'
+	compile  'mysql:mysql-connector-java:5.1.35'
+	compile  'log4j:log4j:1.2.17'
+	compile 'org.apache.struts:struts2-core:2.3.20'
+	compile 'commons-dbcp:commons-dbcp:1.4'
+	compile 'org.springframework:spring-orm:4.1.6.RELEASE'
+	compile 'org.hibernate:hibernate-entitymanager:4.3.9.Final'
+	compile 'org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final'
+	compile 'javax.persistence:persistence-api:1.0.2'
+
 }
 
 task wrapper (type: Wrapper) {
