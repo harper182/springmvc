@@ -26,7 +26,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
@@ -40,11 +40,6 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		<property name="annotatedClasses">
-			<list>
-				<value>com.sxt.po.User</value>
-			</list>
-		</property>
 
 		<property name="annotatedPackages">
 			<list>
@@ -54,7 +49,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 
 	</bean>
 
-	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
@@ -65,6 +60,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 
 
 	<!-- 配置事务管理 -->
+	<!--
 	<bean id="txManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -75,20 +71,14 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			id="businessService" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
 	</aop:config>
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="find*" read-only="true" propagation="NOT_SUPPORTED" />
-			<!-- get开头的方法不需要在事务中运行 。 有些情况是没有必要使用事务的，比如获取数据。开启事务本身对性能是有一定的影响的 -->
-			<tx:method name="*" />    <!-- 其他方法在实务中运行 -->
-		</tx:attributes>
-	</tx:advice>
-
-
+	-->
 	<bean id="transactionManager"
 		  class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf"/>
 	</bean>
 
-	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"/>
+	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="/WEB-INF/persistence.xml"></property>
+	</bean>
 </beans>
             

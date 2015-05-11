@@ -9,7 +9,7 @@ import com.tw.dao.IUserDao;
  * Created by hbowang on 5/10/15.
  */
 public class UserDao extends BaseDao implements IUserDao{
-    private BaseJpaDao<User> discoDao;
+
     @Override
     public void saveUser(User user) {
         this.getHibernateTemplate().save(user);

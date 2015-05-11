@@ -22,16 +22,9 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     </bean>
 
 <!-- servlet映射列表,所有控制层Controller的servlet在这里定义 -->
-    <bean id="urlMapping"
-          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="user.do">userController</prop>
-            </props>
-        </property>
-    </bean>
 
-<bean id="userController" class="com.sxt.action.UserController">
+
+<bean id="userController" class="com.tw.controller.UserController">
 	<property name="userService" ref="userService"></property>
 </bean>
 </beans>
