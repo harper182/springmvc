@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <form method="post" action="<c:url value='/user/register'/>">
+    <form method="post" action='/user/register'>
         <tr>
             <td>username:</td>
             <td><input type="text" name="username"></td>

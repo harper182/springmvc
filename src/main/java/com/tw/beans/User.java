@@ -9,8 +9,7 @@ import javax.persistence.*;
 /**
  * Created by hbowang on 5/10/15.
  */
-@Entity
-@Table(name="user")
+@Entity(name="user")
 @Cacheable(false)
 public class User extends BaseDomain {
     @Id

@@ -18,6 +18,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public ModelAndView register(User user){
+        System.out.print(user.getName());
         userService.saveUser(user);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("user/createSuccess");

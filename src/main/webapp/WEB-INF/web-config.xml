@@ -19,12 +19,12 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
             value="org.springframework.web.servlet.view.JstlView"/>
         <!--<property name="prefix" value="/myjsp/"/>-->
         <property name="suffix" value=".jsp"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
     </bean>
-
 <!-- servlet映射列表,所有控制层Controller的servlet在这里定义 -->
 
 
 <bean id="userController" class="com.tw.controller.UserController">
-	<property name="userService" ref="userService"></property>
+
 </bean>
 </beans>
