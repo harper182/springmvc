@@ -12,6 +12,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
   http://www.springframework.org/schema/context   
    http://www.springframework.org/schema/context/spring-context-2.5.xsd
 ">
+	<tx:annotation-driven/>
 
 	<context:property-placeholder location="/WEB-INF/jdbc.properties"/>
 
@@ -29,14 +30,10 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			<ref bean="dataSource" />
 		</property>
 		<property name="hibernateProperties">
-			<props>
-				<!-- key的名字前面都要加hibernate. -->
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+			</value>
 		</property>
 
 		<property name="annotatedPackages">
@@ -49,39 +46,42 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="checkWriteOperations" value="false"/>
 	</bean>
 
 	<!--配置一个JdbcTemplate实例 -->
+	<!--
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	-->
 	<bean class="com.tw.base.BaseDao">
 		<property name="hibernateTemplate"  ref="hibernateTemplate"></property>
 	</bean>
 
 	<!-- 配置事务管理 -->
-	<!--
+
 	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.Hibernate^">
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="txManager" />
-	<aop:config>
-		<aop:pointcut expression="execution(public * com.tw.service.impl.*.*(..))"
-			id="businessService" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
-	</aop:config>
-	-->
-	<!--
+
+
 	<bean id="transactionManager"
 		  class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf"/>
 	</bean>
-	-->
-	<!--
+	<tx:advice id="txAdvice" transaction-manager="txManager" >
+		<!-- the transactional semantics... -->
+		<tx:attributes >
+			<!-- all methods starting with 'get' are read-only -->
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="*" read-only="false" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
 		<property name="persistenceXmlLocation" value="/WEB-INF/persistence.xml"></property>
 	</bean>
-	-->
 </beans>
             
