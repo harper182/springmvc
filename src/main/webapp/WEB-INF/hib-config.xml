@@ -62,7 +62,7 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	<!-- 配置事务管理 -->
 	<!--
 	<bean id="txManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate3.Hibernate^">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager" />
@@ -72,13 +72,16 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
 	</aop:config>
 	-->
+	<!--
 	<bean id="transactionManager"
 		  class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="emf"/>
 	</bean>
-
+	-->
+	<!--
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceXmlLocation" value="/WEB-INF/persistence.xml"></property>
 	</bean>
+	-->
 </beans>
             

@@ -21,6 +21,6 @@
 </head>
 
 <body>
-    user ${user.userName} create success!
+    user ${user.name} create success!
 </body>
 </html>

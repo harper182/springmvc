@@ -13,14 +13,18 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     </bean>
   
    <!-- 页面View层基本信息设定 -->
+<<<<<<< HEAD
 
-<!-- servlet映射列表,所有控制层Controller的s-->
+<!-- servlet映射列表,所有控制层Controller的servlet在这里定义 -->
+
+=======
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
             value="org.springframework.web.servlet.view.JstlView"/>
         <!--<property name="prefix" value="/myjsp/"/>-->
         <property name="suffix" value=".jsp"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
     </bean>
 <!-- servlet映射列表,所有控制层Controller的servlet在这里定义 -->
 
@@ -28,4 +32,5 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 <bean id="userController" class="com.tw.controller.UserController">
 
 </bean>
+>>>>>>> 7d8083c56d6273a306f21bc9c4cf5b9e16afc51f
 </beans>

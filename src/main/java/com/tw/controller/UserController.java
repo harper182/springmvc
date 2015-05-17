@@ -11,26 +11,27 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by hbowang on 5/10/15.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserController {
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
-    @RequestMapping("/register")
-    public ModelAndView register(User user){
-        System.out.print(user.getName());
-        userService.saveUser(user);
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("user/createSuccess");
-        mv.addObject("user",user);
-        return mv;
+
+    @RequestMapping("/user/register")
+    public String register(User user){
+//        userService.saveUser(user);
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("user/createSuccess");
+//        mv.addObject("user",user);
+//        return mv;
+        return "createSuccess";
     }
 
-    public UserService getUserService() {
-        return userService;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
+//    public UserService getUserService() {
+//        return userService;
+//    }
+//
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
 }
